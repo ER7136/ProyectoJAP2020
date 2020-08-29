@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
         if (fieldFilled) {
+            localStorage.setItem('userLogged', JSON.stringify({ email: inputEmail.value }));
             window.location = "main-page.html";
         } else {
             alert("Debes ingresar los datos en ambos campos.")

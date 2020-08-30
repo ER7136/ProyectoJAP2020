@@ -8,7 +8,6 @@ var currentProductsArray = [];
 var currentSortProductCriteria = undefined;
 var minPrice = undefined;
 var maxPrice = undefined;
-var search = undefined;
 
 function sortProducts(criteria, array) {
     let result = [];
@@ -46,11 +45,7 @@ function showProducts(array) {
         if (((minPrice == undefined) || (minPrice != undefined && parseInt(product.cost) >= minPrice)) &&
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))) {
 
-            if (search == undefined ||
-                product.name.toLowerCase().indexOf(search) != -1 ||
-                product.description.toLowerCase().indexOf(search) != -1) {
-
-                contentToAppend += `
+            contentToAppend += `
                 <div class="list-group-item list-group-item-action">
                     <div class="row">
                         <div class="col-3">
@@ -67,7 +62,6 @@ function showProducts(array) {
                     </div>
                 </div>
             `
-            }
         }
         document.getElementById("productList").innerHTML = contentToAppend;
     }
@@ -82,6 +76,7 @@ function sortAndShowProducts(sortCriteria, productsArray) {
 
     currentProductsArray = sortProducts(currentSortProductCriteria, currentProductsArray);
 
+    //Muestro los productos ordenados
     showProducts(currentProductsArray);
 }
 
@@ -107,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("clearRangeFilterPrice").addEventListener("click", function() {
         document.getElementById("rangeFilterPriceMin").value = "";
         document.getElementById("rangeFilterPriceMax").value = "";
+
         minPrice = undefined;
         maxPrice = undefined;
 
@@ -114,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 
     document.getElementById("rangeFilterPrice").addEventListener("click", function() {
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+        //de productos por categoría.
         minPrice = document.getElementById("rangeFilterPriceMin").value;
         maxPrice = document.getElementById("rangeFilterPriceMax").value;
 
@@ -128,19 +126,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         } else {
             maxPrice = undefined;
         }
-
-        showProducts(currentProductsArray);
-    });
-
-    document.getElementById("clearSearch").addEventListener("click", function() {
-        document.getElementById("search").value = "";
-        search = undefined;
-
-        showProducts(currentProductsArray);
-    });
-
-    document.getElementById("search").addEventListener("input", function() {
-        search = document.getElementById("search").value.toLowerCase();
 
         showProducts(currentProductsArray);
     });

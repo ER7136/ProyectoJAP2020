@@ -68,4 +68,50 @@ document.addEventListener("DOMContentLoaded", function() {
             showComments(productComments);
         }
     });
+
+    let userLogged = localStorage.getItem('userLogged');
+    if (userLogged) {
+        document.getElementById("newComment").style = "display: inline-block";
+    }
+
+    document.getElementById("sendComment").addEventListener("click", function() {
+        let now = new Date();
+        let dateTime = `${now.getFullYear()}-`
+
+        if (now.getMonth() + 1 <= 9) {
+            dateTime += `0${now.getMonth() + 1}-`
+        } else {
+            dateTime += `${now.getMonth() + 1}-`
+        };
+        if (now.getDate() + 1 <= 9) {
+            dateTime += `0${now.getDate()} `
+        } else {
+            dateTime += `${now.getDate()} `
+        };
+        if (now.getHours() + 1 <= 9) {
+            dateTime += `0${now.getHours()}:`
+        } else {
+            dateTime += `${now.getHours()}:`
+        };
+        if (now.getMinutes() + 1 <= 9) {
+            dateTime += `0${now.getMinutes()}:`
+        } else {
+            dateTime += `${now.getMinutes()}:`
+        };
+        if (now.getSeconds() + 1 <= 9) {
+            dateTime += `0${now.getSeconds()}`
+        } else {
+            dateTime += `${now.getSeconds()}`
+        };
+
+        let newComment = {
+            user: JSON.parse(localStorage.getItem('userLogged')).email,
+            description: document.getElementById('newComm').value,
+            score: parseInt(document.getElementById('newRating').value),
+            dateTime: dateTime
+        };
+
+        productComments.push(newComment);
+        showComments(productComments);
+    });
 });

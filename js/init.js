@@ -40,9 +40,6 @@ var getJSONData = function(url) {
         });
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
     let userLogged = localStorage.getItem('userLogged');
     let infoUser = document.getElementById("infoUser");
@@ -50,6 +47,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     if (userLogged) {
         userLogged = JSON.parse(userLogged);
-        user.innerText += 'Usuario conectado: ' + userLogged.email;
+        user.innerText += "Usuario conectado: " + userLogged.email;
+        infoUser.style = "display: inline-block;";
     }
+
+    document.getElementById("logOut").addEventListener("click",
+        function() {
+            localStorage.removeItem('userLogged');
+            window.location = 'index.html';
+        });
 });

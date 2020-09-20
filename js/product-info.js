@@ -1,5 +1,6 @@
 var product = {};
 var productComments = [];
+var allProducts = [];
 
 function showImagesGallery(array) {
     let contentToAppend = "";
@@ -40,6 +41,24 @@ function showComments(commentsArray) {
         comments += `<div style="text-align: left;"><sub>${comment.dateTime}</sub></div><br><br>`;
     });
     document.getElementById("productComments").innerHTML = comments;
+}
+
+function showRelatedProducts(allProductsArray, relatedProductsArray) {
+    let relatedProducts = '<br>';
+    relatedProductsArray.forEach(function(i) {
+        relatedProducts += `<strong><em>${allProductsArray[i].name}</em></strong><br>`;
+        relatedProducts += `${allProductsArray[i].currency} ${allProductsArray[i].cost}<br>`;
+        relatedProducts += `
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <div class="d-block mb-4 h-100">
+                              <img class="img-fluid img-thumbnail" src="` + allProductsArray[i].imgSrc + `" alt=""></img><br>
+                        </div>
+                    </div>
+                    `;
+        relatedProducts += `<a href="product-info.html">Ver este producto</a><br>`;
+        relatedProducts += `<br><br>`;
+    });
+    document.getElementById("relatedProducts").innerHTML = relatedProducts;
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -113,5 +132,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         productComments.push(newComment);
         showComments(productComments);
+    });
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            allProducts = resultObj.data;
+
+            showRelatedProducts(allProducts, product.relatedProducts);
+        }
     });
 });

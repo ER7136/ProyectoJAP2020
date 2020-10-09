@@ -53,6 +53,7 @@
             </div>
         </div>
     </nav>
+    <!--
     <div class="container p-5">
         <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
             <h4 class="alert-heading">¡A trabajar! :)</h4>
@@ -63,6 +64,87 @@
             </p>
         </div>
     </div>
+    -->
+    <main role="main" class="pb-5">
+        <div class="text-center p-4">
+            <h2>Carrito</h2>
+            <p class="lead">Estos son los artículos que agregaste a tu carrito</p>
+        </div>
+        <div id="cartContent">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th class="text-center align-middle"></th>
+                                    <th class="text-center align-middle">Artículo</th>
+                                    <th class="text-center align-middle">Precio unitario</th>
+                                    <th class="text-center align-middle">Precio en UYU</th>
+                                    <th class="text-center align-middle">Cantidad</th>
+                                    <th class="text-center align-middle">Precio final</th>
+                                    <th class="text-center align-middle">Quitar artículo</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart"></tbody>
+                            <tfoot>
+                                <tr class="table-info">
+                                    <td class="text-right align-middle" colspan="5"><strong>Subtotal (pesos uruguayos):</strong></td>
+                                    <td class="text-center align-middle" colspan="1" id="cartTotal"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <br>
+                        <h4>Selecciona el tipo de envío:</h4>
+                        <div>
+                            <input id="premiumDelivery" name="delivery" type="radio" value="1" required checked>
+                            <label for="premiumDelivery">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
+                            <br>
+                            <input id="expressDelivery" name="delivery" type="radio" value="2" required>
+                            <label for="expressDelivery">Express (5-8 días) - Costo del 7% sobre el subtotal.</label>
+                            <br>
+                            <input id="standardDelivery" name="delivery" type="radio" value="3" required>
+                            <label for="standardDelivery">Standard (12 a 15 días) - Costo del 5% sobre el
+                                subtotal.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <!--<div class="container">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="text-center align-middle"></th>
+                                    <th class="text-center align-middle">Subtotal</th>
+                                    <th class="text-center align-middle">Costo del envío</th>
+                                    <th class="text-center align-middle">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deliveryTotal"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </main>
+    <footer class="text-muted bg-light">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        </div>
+    </footer>
     <div id="spinner-wrapper">
         <div class="lds-ring">
             <div></div>

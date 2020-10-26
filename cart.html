@@ -90,50 +90,142 @@
                             <tfoot>
                                 <tr class="table-info">
                                     <td class="text-right align-middle" colspan="5"><strong>Subtotal (pesos uruguayos):</strong></td>
-                                    <td class="text-center align-middle" colspan="1" id="cartTotal"></td>
+                                    <td class="text-center align-middle" colspan="1"><strong id="cartTotal"></strong>
+                                    </td>
                                 </tr>
                             </tfoot>
                         </table>
+                        <br>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
+                    <div class="col-3"></div>
                     <div class="col">
+                        <h4>Datos del envío</h4>
+                        <p class="lead">Completa los siguientes datos para el envío de tu compra</p>
                         <br>
-                        <h4>Selecciona el tipo de envío:</h4>
-                        <div>
-                            <input id="premiumDelivery" name="delivery" type="radio" value="1" required checked>
-                            <label for="premiumDelivery">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
+                        <form id="needs-validation" novalidate>
+                            <div>
+                                <div>
+                                    <h5>Nombre</h5>
+                                    <input type="text" class="form-control" id="recipientName" placeholder="Nombre completo" required><br>
+                                    <h5>Dirección</h5>
+                                    <input type="text" class="form-control" id="country" placeholder="País" required><br>
+                                    <input type="text" class="form-control" id="city" placeholder="Ciudad" required><br>
+                                    <input type="text" class="form-control" id="street" placeholder="Calle" required><br>
+                                    <input type="text" class="form-control" id="door" placeholder="Número de puerta" required><br>
+                                    <input type="text" class="form-control" id="corner" placeholder="Esquina" required><br>
+                                </div>
+                                <div>
+                                    <h5>Tipo de envío</h5>
+                                    <div>
+                                        <input type="radio" id="premiumDelivery" name="delivery" value="15" required checked>
+                                        <label for="premiumDelivery">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label><br>
+                                        <input type="radio" id="expressDelivery" name="delivery" value="7" required>
+                                        <label for="expressDelivery">Express (5-8 días) - Costo del 7% sobre el subtotal.</label><br>
+                                        <input type="radio" id="standardDelivery" name="delivery" value="5" required>
+                                        <label for="standardDelivery">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label><br>
+                                    </div>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-block btn-primary" id="paymentBtn" data-toggle="modal" data-target="#modalPayment">Seleccionar forma de pago</button>
+                                <div id="paymentMessage"></div>
+                            </div>
                             <br>
-                            <input id="expressDelivery" name="delivery" type="radio" value="2" required>
-                            <label for="expressDelivery">Express (5-8 días) - Costo del 7% sobre el subtotal.</label>
+                            <div>
+                                <h4>Total de la compra</h4>
+                                <br>
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-10">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr class="thead-light">
+                                                    <th class="text-right align-middle">Subtotal</th>
+                                                    <td class="text-right align-middle" id="purchaseSubtotal" colspan="4"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="thead-light">
+                                                    <th class="text-right align-middle">Costo del envío</th>
+                                                    <td class="text-right align-middle" id="purchaseDelivery" colspan="4"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="table-info">
+                                                    <th class="text-right align-middle">Total (pesos uruguayos)</th>
+                                                    <td class="text-right align-middle" colspan="4"><strong id="purchaseDeliveryIncluded"></strong></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
+                            </div>
                             <br>
-                            <input id="standardDelivery" name="delivery" type="radio" value="3" required>
-                            <label for="standardDelivery">Standard (12 a 15 días) - Costo del 5% sobre el
-                                subtotal.</label>
+                            <button type="submit" class="btn btn-block btn-success">Confirmar compra</button>
+                        </form>
+                    </div>
+                    <div class="col-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalPayment">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Forma de pago</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="modal-body">
+                            <h5>Selecciona la forma de pago de tu preferencia</h5>
+                            <input type="radio" id="paymentCard" name="paymentMethod" value="1" checked>
+                            <label for="paymentCard">Tarjeta de crédito</label><br>
+                            <input type="radio" id="paymentBank" name="paymentMethod" value="2">
+                            <label for="paymentBank">Transferencia bancaria</label><br>
+                            <form id="paymentCardData" novalidate>
+                                <div>
+                                    <div>
+                                        <input type="text" class="form-control" id="paymentCardName" placeholder="Nombre del titular" required><br>
+                                        <input type="number" class="form-control" id="paymentCardNumber" placeholder="Número de tarjeta" required><br>
+                                        <input type="text" class="form-control" id="paymentCardDate" placeholder="Fecha de vencimiento: MM/AA" required><br>
+                                        <input type="number" class="form-control" id="paymentCardSecurity" placeholder="Código de seguridad" required><br>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="confirmCardData">Aceptar</button>
+                                </div>
+                            </form>
+                            <form id="paymentBankData" class="d-none" novalidate>
+                                <div>
+                                    <select class="form-control" id="paymentBankSelect">
+                                        <option>BBVA</option>
+                                        <option>BROU</option>
+                                        <option>Itaú</option>
+                                        <option>Santander</option>
+                                        <option>Scotia</option>
+                                    </select>
+                                    <br>
+                                    <input type="number" class="form-control" id="paymentBankAccountNumber" placeholder="Número de cuenta bancaria" required><br>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary" id="confirmBankData">Aceptar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <!--<div class="container">
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-bordered">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="text-center align-middle"></th>
-                                    <th class="text-center align-middle">Subtotal</th>
-                                    <th class="text-center align-middle">Costo del envío</th>
-                                    <th class="text-center align-middle">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="deliveryTotal"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>-->
+        </div>
         </div>
     </main>
     <footer class="text-muted bg-light">

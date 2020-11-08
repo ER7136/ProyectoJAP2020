@@ -48,18 +48,27 @@ function showProducts(array) {
                 product.description.toLowerCase().indexOf(search) != -1) {
 
                 contentToAppend += `
-                <a href="product-info.html" class="list-group-item list-group-item-action">
-                    <div class="row">
-                        <div class="col-3">
-                            <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                        </div>
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1">` + product.name + `</h4>
-                                <small class="text-muted">` + product.soldCount + ` vendidos</small>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card-deck">
+                        <div class="card my-3">
+                            <a href="product-info.html">
+                                <img src="${product.imgSrc}" class="card-img-top" alt="${product.description}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>${product.name}</strong></h5>
+                                <p class="card-text">${product.description}</p><br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="card-text text-left"><small class="text-muted">${product.soldCount} vendidos</small></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6 class="card-text text-right"><strong>${product.currency} ${product.cost}</strong></h6>
+                                    </div>
+                                </div>
                             </div>
-                            <p>` + product.description + `</p><br>
-                            <h5>` + product.currency + ` ` + product.cost + `</h5>
+                            <div class="card-footer">
+                                <a href="product-info.html"><p class="card-text text-center text-primary">Ver producto</p></a>
+                            </div>
                         </div>
                     </div>
                 </div>

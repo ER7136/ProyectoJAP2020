@@ -61,16 +61,27 @@
                             <input type="radio" name="options" autocomplete="off">Precio de mayor a menor
                         </label>
                         <label class="btn btn-light" id="sortBySold">
-                            <input type="radio" name="options" autocomplete="off"><i
-                                class="fas fa-sort-amount-down mr-1"></i>Relevancia
+                            <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
                         </label>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col-md-6"></div>
-                <div class="col-md-6 col-sm-12 mb-1 container">
-                    <div class="row container p-0 m-0">
+            <div class="row">
+                <div class="col-lg-7 col-md-12 text-left">
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="font-weight-normal my-2">Buscar producto:</p>
+                        </div>
+                        <div class="col-5">
+                            <input class="form-control" type="text" placeholder="Buscar..." id="search">
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-link btn-sm my-1" id="clearSearch">Limpiar búsqueda</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-12 text-right">
+                    <div class="row">
                         <div class="col">
                             <p class="font-weight-normal text-right my-2">Precio</p>
                         </div>
@@ -89,25 +100,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end">
-                <div class="col-md-6"></div>
-                <div class="col-md-6 col-sm-12 mb-1 container">
-                    <div class="row container p-0 m-0">
-                        <div class="col">
-                            <p class="font-weight-normal text-right my-2">Buscar producto</p>
-                        </div>
-                        <div class="col">
-                            <input class="form-control" type="text" placeholder="Buscar..." id="search">
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-link btn-sm my-1" id="clearSearch">Limpiar búsqueda</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="list-group" id="productList"></div>
-            </div>
+            <div class="row" id="productList"></div>
+        </div>
     </main>
     <footer class="text-muted bg-light">
         <div class="container">

@@ -47,13 +47,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     if (userLogged) {
         userLogged = JSON.parse(userLogged);
-        user.innerText += "Usuario conectado: " + userLogged.email;
+        user.innerHTML += "Usuario conectado: <strong>" + userLogged.email + "</strong>";
         infoUser.style = "display: inline-block;";
     }
 
-    document.getElementById("logOut").addEventListener("click",
-        function() {
-            localStorage.removeItem('userLogged');
-            window.location = 'index.html';
-        });
+    document.getElementById("logOut").addEventListener("click", function() {
+        localStorage.removeItem('userLogged');
+        window.location = 'index.html';
+    });
 });

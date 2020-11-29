@@ -44,19 +44,19 @@ function showComments(commentsArray) {
 }
 
 function showRelatedProducts(allProductsArray, relatedProductsArray) {
-    let relatedProducts = '<br>';
+    let relatedProducts = '<br><br>';
     relatedProductsArray.forEach(function(i) {
-        relatedProducts += `<strong><em>${allProductsArray[i].name}</em></strong><br>`;
-        relatedProducts += `${allProductsArray[i].currency} ${allProductsArray[i].cost}<br>`;
         relatedProducts += `
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="d-block mb-4 h-100">
-                              <img class="img-fluid img-thumbnail" src="` + allProductsArray[i].imgSrc + `" alt=""></img><br>
-                        </div>
-                    </div>
-                    `;
-        relatedProducts += `<a href="product-info.html">Ver este producto</a><br>`;
-        relatedProducts += `<br><br>`;
+            <div class="col-lg-3 col-md-4 col-6">                
+                <br>
+                <strong><em>${allProductsArray[i].name}</em></strong><br>
+                <p>${allProductsArray[i].currency} ${allProductsArray[i].cost}</p>                               
+                <div class="d-block mb-3">
+                    <img class="img-fluid img-thumbnail" src="` + allProductsArray[i].imgSrc + `" alt=""></img>
+                </div>                
+                <a class="d-block text-center" href="product-info.html">Ver este producto</a><br><br>
+            </div>
+        `;
     });
     document.getElementById("relatedProducts").innerHTML = relatedProducts;
 }
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
             productSoldCountHTML.innerHTML = product.soldCount;
 
             showImagesGallery(product.images);
+            showRelatedProducts(allProducts, product.relatedProducts);
         }
     });
 
@@ -85,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
             productComments = resultObj.data;
 
             showComments(productComments);
+            showRelatedProducts(allProducts, product.relatedProducts);
         }
     });
 
@@ -132,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         productComments.push(newComment);
         showComments(productComments);
+        showRelatedProducts(allProducts, product.relatedProducts);
     });
 
     getJSONData(PRODUCTS_URL).then(function(resultObj) {

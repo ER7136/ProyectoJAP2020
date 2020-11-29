@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         if (form.checkValidity() === false) {
             e.preventDefault();
             e.stopPropagation();
-            document.getElementById("paymentMessage").innerHTML = `                
+            document.getElementById("paymentMessage").innerHTML = `
                 <div class="alert alert-danger alert-dismissible show" role="alert" style="z-index:9999">
                     <strong>Debes completar todos los datos de envío.</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
